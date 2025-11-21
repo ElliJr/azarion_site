@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste HTML</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+            color: white;
+        }
+
+        .box {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px #000;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .toast {
+            position: fixed;
+            right: -300px;
+            top: 20px;
+            background: #0f0;
+            color: #000;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: right 0.5s ease;
+            z-index: 9999;
+        }
+
+        .toast.show {
+            right: 20px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="toast" class="toast">Login realizado com sucesso!</div>
+
+    <div class="box">
+      <h2>Arquivo HTML de Teste</h2>
+      <p>Se você está vendo isso, o arquivo funciona!</p>
+      <button onclick="showToast('Login realizado com sucesso!')">Clique aqui</button>
+    </div>
+
+    <script>
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        }
+    </script>
+  </body>
+</html>

@@ -7,11 +7,15 @@
     <title>Azairon</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/login.css">
+    <link type="module" href="assets/js/main.js">
     
   </head>
   <body>
     <!-- HERO -->
     <div class="hero">
+      <div class="campoUser"> 
+        <h5 id="nameUser"></h5>
+      </div>
       <div class="hero__inner">
         <h1 class="hero__title">Azairon</h1>
         <p class="hero__lead">
@@ -19,9 +23,8 @@
           <br>Crie sua conta grátis e receba um treino completo em segundos.
         </p>
         
-          <button onclick="openModal()" class="btn btn--primary" >Criar Conta</button>          
+          <button onclick="openModal()" id="openModal" class="btn btn--primary" >Criar Conta</button>          
                 
-
           <!-- Modal Principal -->
         </div>
         <div id="main-modal" class="modal">
@@ -157,9 +160,9 @@
     <section class="cta-final">
       <h2>Pronto para transformar seu treino?</h2>
       <p>Crie sua conta e comece seu treino personalizado agora.</p>
-      <button class="btn btn--primary btn-big">Começar Agora</button>
+      <button onclick="openModal()" class="btn btn--primary btn-big">Começar Agora</button>
     </section>
-
+    <div id="toast" class="toast">Login realizado com sucesso!</div>
     <!-- FOOTER -->
     <footer class="footer">
       <p>© 2025 Azairon — Todos os direitos reservados.</p>
@@ -191,6 +194,15 @@ const firebaseConfig = {
   measurementId: "G-RS2WV81P8Q"
 };
 
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000); // some em 3 segundos
+}
 // INIT FIREBASE --------------------------------------------------------
 
 const app = initializeApp(firebaseConfig);
@@ -230,10 +242,10 @@ window.showCreate = () => {
 document.getElementById("btn-create").addEventListener("click", async () => {
   const email = document.getElementById("create-email").value;
   const password = document.getElementById("create-password").value;
-
   try {
     await createUserWithEmailAndPassword(auth, email, password);
     alert("Conta criada com sucesso!");
+    const nameUser = document.getElementById("nameUser").innerText = email;
     closeModal();
     showLogin();
   } catch (error) {
@@ -246,10 +258,12 @@ document.getElementById("btn-create").addEventListener("click", async () => {
 document.getElementById("btn-login").addEventListener("click", async () => {
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
-
+  const nameUser = document.getElementById("nameUser").innerText = email;
+  showToast("Login realizado com sucesso!");
   try {
     await signInWithEmailAndPassword(auth, email, password);
     alert("Login realizado com sucesso!");
+    const nameUser = document.getElementById("nameUser").innerText = email;
     closeModal();
   } catch (error) {
     document.getElementById("login-error").textContent = error.message;
@@ -261,7 +275,12 @@ document.getElementById("btn-login").addEventListener("click", async () => {
 document.getElementById("google-login").addEventListener("click", async () => {
   try {
     const result = await signInWithPopup(auth, provider);
-    alert("Login Google: " + result.user.email);
+    // alert("Login Google: " + result.user.email);
+    const nameUser = document.getElementById("nameUser").innerText = result.user.email;
+    if (nameUser){
+      document.querySelector("#openModal").style.display = "none";
+    }
+    showToast("Login realizado com sucesso!");
     closeModal();
   } catch (error) {
     document.getElementById("login-error").textContent = error.message;
