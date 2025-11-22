@@ -3,17 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/img/icone.ico" type="image/x-icon"> 
+    <link rel="icon" href="assets/img/icone.ico" type="image/x-icon">
     <title>Azairon</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/loader.css">
     <link type="module" href="assets/js/main.js">
-    
+
   </head>
   <body>
     <!-- HERO -->
     <div class="hero">
-      <div class="campoUser"> 
+      <div class="campoUser">
         <h5 id="nameUser"></h5>
       </div>
       <div class="hero__inner">
@@ -22,42 +23,62 @@
           Seu novo treinador inteligente.
           <br>Crie sua conta grátis e receba um treino completo em segundos.
         </p>
-        
-          <button onclick="openModal()" id="openModal" class="btn btn--primary" >Criar Conta</button>          
-                
-          <!-- Modal Principal -->
-        </div>
-        <div id="main-modal" class="modal">
-          <div class="modal-content">
-            <!-- Abas -->
-            <div class="tabs">
-              <div id="tab-login" class="tab active"
-                onclick="showLogin()">Login</div>
-              <div id="tab-create" class="tab" onclick="showCreate()">Criar
-                Conta</div>
-            </div>
-
-            <!-- LOGIN -->
-            <div id="login-box">
-              <input type="email" id="login-email" placeholder="Seu email">
-              <input type="password" id="login-password"
-                placeholder="Sua senha">
-              <button id="btn-login">Entrar</button>
-              <p class="error" id="login-error"></p>
-            </div>
-            <button id="google-login" class="" >logar com google </button>    
-            <!-- CRIAR CONTA -->
-            <div id="create-box" style="display: none;">
-              <input type="email" id="create-email" placeholder="Seu email">
-              <input type="password" id="create-password"
-                placeholder="Sua senha">
-              <button id="btn-create">Criar Conta</button>
-              <p class="error" id="create-error"></p>
-            </div>
-
-            <div class="close" onclick="closeModal()">Fechar</div>
+        <div class="building">
+          <h1>Em construção, aguarde...</h1>
+          <!-- From Uiverse.io by mobinkakei -->
+          <div id="wifi-loader">
+            <svg class="circle-outer" viewBox="0 0 86 86">
+              <circle class="back" cx="43" cy="43" r="40"></circle>
+              <circle class="front" cx="43" cy="43" r="40"></circle>
+              <circle class="new" cx="43" cy="43" r="40"></circle>
+            </svg>
+            <svg class="circle-middle" viewBox="0 0 60 60">
+              <circle class="back" cx="30" cy="30" r="27"></circle>
+              <circle class="front" cx="30" cy="30" r="27"></circle>
+            </svg>
+            <svg class="circle-inner" viewBox="0 0 34 34">
+              <circle class="back" cx="17" cy="17" r="14"></circle>
+              <circle class="front" cx="17" cy="17" r="14"></circle>
+            </svg>
+            <div class="text" data-text="Building"></div>
           </div>
         </div>
+        <button onclick="openModal()" id="openModal"
+          class="btn btn--primary">Criar Conta</button>
+
+        <!-- Modal Principal -->
+      </div>
+      <div id="main-modal" class="modal">
+        <div class="modal-content">
+          <!-- Abas -->
+          <div class="tabs">
+            <div id="tab-login" class="tab active"
+              onclick="showLogin()">Login</div>
+            <div id="tab-create" class="tab" onclick="showCreate()">Criar
+              Conta</div>
+          </div>
+
+          <!-- LOGIN -->
+          <div id="login-box">
+            <input type="email" id="login-email" placeholder="Seu email">
+            <input type="password" id="login-password"
+              placeholder="Sua senha">
+            <button id="btn-login">Entrar</button>
+            <p class="error" id="login-error"></p>
+          </div>
+          <button id="google-login" class>logar com google </button>
+          <!-- CRIAR CONTA -->
+          <div id="create-box" style="display: none;">
+            <input type="email" id="create-email" placeholder="Seu email">
+            <input type="password" id="create-password"
+              placeholder="Sua senha">
+            <button id="btn-create">Criar Conta</button>
+            <p class="error" id="create-error"></p>
+          </div>
+
+          <div class="close" onclick="closeModal()">Fechar</div>
+        </div>
+      </div>
 
       <div class="hero__footer-note">Menos de 2 minutos para começar.</div>
     </div>
@@ -160,14 +181,15 @@
     <section class="cta-final">
       <h2>Pronto para transformar seu treino?</h2>
       <p>Crie sua conta e comece seu treino personalizado agora.</p>
-      <button onclick="openModal()" class="btn btn--primary btn-big">Começar Agora</button>
+      <button onclick="openModal()" class="btn btn--primary btn-big">Começar
+        Agora</button>
     </section>
     <div id="toast" class="toast">Login realizado com sucesso!</div>
     <!-- FOOTER -->
     <footer class="footer">
       <p>© 2025 Azairon — Todos os direitos reservados.</p>
     </footer>
-    
+
     <script type="module">
       // IMPORTS --------------------------------------------------------------
 
@@ -246,6 +268,17 @@ document.getElementById("btn-create").addEventListener("click", async () => {
     await createUserWithEmailAndPassword(auth, email, password);
     alert("Conta criada com sucesso!");
     const nameUser = document.getElementById("nameUser").innerText = email;
+    showToast("Conta criada com sucesso!");
+    if (nameUser){
+      document.querySelector("#openModal").style.display = "none";
+      document.querySelector(".hero__footer-note").style.display = "none";
+      document.querySelector(".how").style.display = "none";
+      document.querySelector(".features").style.display = "none";
+      document.querySelector(".testimonials").style.display = "none";
+      document.querySelector(".hero__lead").style.display = "none";
+      document.querySelector(".cta-final").style.display = "none";
+      document.querySelector(".building").style.display = "block";
+    }
     closeModal();
     showLogin();
   } catch (error) {
@@ -259,11 +292,21 @@ document.getElementById("btn-login").addEventListener("click", async () => {
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
   const nameUser = document.getElementById("nameUser").innerText = email;
-  showToast("Login realizado com sucesso!");
   try {
     await signInWithEmailAndPassword(auth, email, password);
     alert("Login realizado com sucesso!");
     const nameUser = document.getElementById("nameUser").innerText = email;
+    showToast("Login realizado com sucesso!");
+    if (nameUser){
+      document.querySelector("#openModal").style.display = "none";
+      document.querySelector(".hero__footer-note").style.display = "none";
+      document.querySelector(".how").style.display = "none";
+      document.querySelector(".features").style.display = "none";
+      document.querySelector(".testimonials").style.display = "none";
+      document.querySelector(".hero__lead").style.display = "none";
+      document.querySelector(".cta-final").style.display = "none";
+      document.querySelector(".building").style.display = "block";
+    }
     closeModal();
   } catch (error) {
     document.getElementById("login-error").textContent = error.message;
@@ -277,10 +320,17 @@ document.getElementById("google-login").addEventListener("click", async () => {
     const result = await signInWithPopup(auth, provider);
     // alert("Login Google: " + result.user.email);
     const nameUser = document.getElementById("nameUser").innerText = result.user.email;
+    showToast("Login realizado com sucesso!");
     if (nameUser){
       document.querySelector("#openModal").style.display = "none";
+      document.querySelector(".hero__footer-note").style.display = "none";
+      document.querySelector(".how").style.display = "none";
+      document.querySelector(".features").style.display = "none";
+      document.querySelector(".testimonials").style.display = "none";
+      document.querySelector(".hero__lead").style.display = "none";
+      document.querySelector(".cta-final").style.display = "none";
+      document.querySelector(".building").style.display = "block";
     }
-    showToast("Login realizado com sucesso!");
     closeModal();
   } catch (error) {
     document.getElementById("login-error").textContent = error.message;
