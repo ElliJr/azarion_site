@@ -15,7 +15,9 @@
     <!-- HERO -->
     <div class="hero">
       <div class="campoUser">
+        <img src="assets/img/person_acount.png" alt="conta perfil" id="iconUser">
         <h5 id="nameUser"></h5>
+        <div onclick="sairBtn" id="sairBtn">Log out</div>
       </div>
       <div class="hero__inner">
         <h1 class="hero__title">Azairon</h1>
@@ -59,6 +61,7 @@
           </div>
 
           <!-- LOGIN -->
+
           <div id="login-box">
             <input type="email" id="login-email" placeholder="Seu email">
             <input type="password" id="login-password"
@@ -66,9 +69,9 @@
             <button id="btn-login">Entrar</button>
             <p class="error" id="login-error"></p>
           </div>
-          <button id="google-login" class>logar com google </button>
           <!-- CRIAR CONTA -->
           <div id="create-box" style="display: none;">
+            <input type="text" id="create-apelido" placeholder="Seu apelido">
             <input type="email" id="create-email" placeholder="Seu email">
             <input type="password" id="create-password"
               placeholder="Sua senha">
@@ -76,6 +79,7 @@
             <p class="error" id="create-error"></p>
           </div>
 
+          <button id="google-login" class>logar com google </button>
           <div class="close" onclick="closeModal()">Fechar</div>
         </div>
       </div>
@@ -196,8 +200,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { 
   getAuth, 
+  signOut,
   GoogleAuthProvider, 
   signInWithPopup,
+  setPersistence,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
@@ -230,7 +236,7 @@ function showToast(message) {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const analytics = getAnalytics(app); // ATIVADO AQUI ✔
-
+setPersistence(auth,  'local');
 // PROVIDER GOOGLE ------------------------------------------------------
 
 const provider = new GoogleAuthProvider();
@@ -262,13 +268,14 @@ window.showCreate = () => {
 // CREATE ACCOUNT -------------------------------------------------------
 
 document.getElementById("btn-create").addEventListener("click", async () => {
+  const apelido = document.getElementById("create-apelido").value;
   const email = document.getElementById("create-email").value;
   const password = document.getElementById("create-password").value;
   try {
     await createUserWithEmailAndPassword(auth, email, password);
-    alert("Conta criada com sucesso!");
-    const nameUser = document.getElementById("nameUser").innerText = email;
+    // alert("Conta criada com sucesso!");
     showToast("Conta criada com sucesso!");
+    const nameUser = document.getElementById("nameUser").innerText = apelido;
     if (nameUser){
       document.querySelector("#openModal").style.display = "none";
       document.querySelector(".hero__footer-note").style.display = "none";
@@ -278,6 +285,8 @@ document.getElementById("btn-create").addEventListener("click", async () => {
       document.querySelector(".hero__lead").style.display = "none";
       document.querySelector(".cta-final").style.display = "none";
       document.querySelector(".building").style.display = "block";
+      document.querySelector("#sairBtn").style.display = "block";
+      document.querySelector("#iconUser").style.display = "block";
     }
     closeModal();
     showLogin();
@@ -291,10 +300,9 @@ document.getElementById("btn-create").addEventListener("click", async () => {
 document.getElementById("btn-login").addEventListener("click", async () => {
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
-  const nameUser = document.getElementById("nameUser").innerText = email;
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    alert("Login realizado com sucesso!");
+    // alert("Login realizado com sucesso!");
     const nameUser = document.getElementById("nameUser").innerText = email;
     showToast("Login realizado com sucesso!");
     if (nameUser){
@@ -306,6 +314,8 @@ document.getElementById("btn-login").addEventListener("click", async () => {
       document.querySelector(".hero__lead").style.display = "none";
       document.querySelector(".cta-final").style.display = "none";
       document.querySelector(".building").style.display = "block";
+      document.querySelector("#sairBtn").style.display = "block";
+      document.querySelector("#iconUser").style.display = "block";
     }
     closeModal();
   } catch (error) {
@@ -330,13 +340,24 @@ document.getElementById("google-login").addEventListener("click", async () => {
       document.querySelector(".hero__lead").style.display = "none";
       document.querySelector(".cta-final").style.display = "none";
       document.querySelector(".building").style.display = "block";
+      document.querySelector("#sairBtn").style.display = "block";
+      document.querySelector("#iconUser").style.display = "block";
     }
     closeModal();
   } catch (error) {
     document.getElementById("login-error").textContent = error.message;
   }
 });
-
+//logout
+document.getElementById("sairBtn").addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+    alert("Logout realizado com sucesso!");
+    location.reload();
+  } catch (error) {
+    console.error("Erro ao fazer logout:", error);
+  }
+});
     </script>
   </body>
 </html>

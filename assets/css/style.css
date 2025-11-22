@@ -55,6 +55,7 @@
     }
 
     .campoUser {
+      display: flex;
       position: absolute;
       top: 10px;
       right: 20px;
@@ -64,6 +65,37 @@
       font-weight: 600;
     }
 
+    #sairBtn {
+      display: none;
+      top: 10px;
+      right: 20px;
+      color: #ff0044;
+      font-family: prompt;
+      font-size: 1.2rem;
+      font-weight: 600;
+      background-color: #490b1b;
+      padding: 8px;
+      border-radius: 12px;
+      transition: 0.5s;
+    }
+
+    #sairBtn:hover {
+      background-color: #ff0044;
+      color: black;
+      cursor: pointer;
+    }
+    #iconUser{
+      width: 30px;
+      height: 30px;
+      display: none;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    #nameUser{
+      margin-right: 15px;
+      text-align: center;
+      
+    }
     .toast {
       position: fixed;
       right: -300px;
@@ -84,7 +116,7 @@
 
     .building {
       display: none;
-      
+
       flex-direction: column;
       justify-content: center;
       align-items: center;
