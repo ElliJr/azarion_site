@@ -55,14 +55,17 @@
     }
 
     .campoUser {
-      display: flex;
+      justify-content: space-evenly;
       position: absolute;
+      display: flex;
       top: 10px;
+      width: 100%;
       right: 20px;
       color: #ff0044;
       font-family: prompt;
       font-size: 1.2rem;
       font-weight: 600;
+      padding: 8px;
     }
 
     #sairBtn {
@@ -89,7 +92,7 @@
       height: 30px;
       display: none;
       border-radius: 50%;
-      margin-right: 10px;
+      left: -10px;
     }
     #nameUser{
       margin-right: 15px;
