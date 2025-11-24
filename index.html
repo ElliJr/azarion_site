@@ -151,40 +151,7 @@
           movimento.</p>
       </div>
 
-    </section>
-
-    <!-- TESTEMUNHOS -->
-    <section class="testimonials">
-      <h2 class="section-title">O que estão dizendo</h2>
-
-      <div class="testimonial-grid">
-
-        <div class="testimonial">
-          <p class="testimonial-text">
-            “Em 3 semanas senti mais evolução do que em meses treinando
-            sozinho.”
-          </p>
-          <span class="testimonial-author">— Lucas Andrade</span>
-        </div>
-
-        <div class="testimonial">
-          <p class="testimonial-text">
-            “O plano ajusta de acordo com meu tempo. A IA realmente entende
-            minha rotina.”
-          </p>
-          <span class="testimonial-author">— Marina Santos</span>
-        </div>
-
-        <div class="testimonial">
-          <p class="testimonial-text">
-            “Finalmente um app que não é genérico. Meu treino parece feito por
-            um personal.”
-          </p>
-          <span class="testimonial-author">— Rafael Monteiro</span>
-        </div>
-
-      </div>
-    </section>
+    </section> 
 
     <!-- CTA FINAL -->
     <section class="cta-final">
@@ -209,7 +176,9 @@ import {
   GoogleAuthProvider, 
   signInWithPopup,
   setPersistence,
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
@@ -240,8 +209,18 @@ function showToast(message) {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const analytics = getAnalytics(app); // ATIVADO AQUI ✔
-setPersistence(auth,  'local');
+const analytics = getAnalytics(app); 
+const persistence = setPersistence; // ATIVADO AQUI ✔
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("Usuário restaurado:", user);
+    // usuário está logado
+  } else {
+    console.log("Nenhum usuário logado.");
+  }
+});
+
 // PROVIDER GOOGLE ------------------------------------------------------
 
 const provider = new GoogleAuthProvider();
@@ -277,6 +256,7 @@ document.getElementById("btn-create").addEventListener("click", async () => {
   const email = document.getElementById("create-email").value;
   const password = document.getElementById("create-password").value;
   try {
+    await persistence(auth, browserLocalPersistence);
     await createUserWithEmailAndPassword(auth, email, password);
     // alert("Conta criada com sucesso!");
     showToast("Conta criada com sucesso!");
@@ -306,6 +286,7 @@ document.getElementById("btn-login").addEventListener("click", async () => {
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
   try {
+    await persistence(auth, browserLocalPersistence);
     await signInWithEmailAndPassword(auth, email, password);
     // alert("Login realizado com sucesso!");
     const nameUser = document.getElementById("nameUser").innerText = email;
@@ -332,6 +313,7 @@ document.getElementById("btn-login").addEventListener("click", async () => {
 
 document.getElementById("google-login").addEventListener("click", async () => {
   try {
+    await persistence(auth, browserLocalPersistence);
     const result = await signInWithPopup(auth, provider);
     // alert("Login Google: " + result.user.email);
     const nameUser = document.getElementById("nameUser").innerText = result.user.email;

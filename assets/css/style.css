@@ -87,18 +87,21 @@
       color: black;
       cursor: pointer;
     }
-    #iconUser{
+
+    #iconUser {
       width: 30px;
       height: 30px;
       display: none;
       border-radius: 50%;
       left: -10px;
     }
-    #nameUser{
+
+    #nameUser {
       margin-right: 15px;
       text-align: center;
       
     }
+
     .toast {
       position: fixed;
       right: -300px;
