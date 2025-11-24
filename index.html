@@ -221,6 +221,7 @@ onAuthStateChanged(auth, (user) => {
     document.querySelector("#openModal").style.display = "none";
     document.querySelector(".hero__footer-note").style.display = "none";
     document.querySelector(".how").style.display = "none";
+    document.querySelector("#iconUser").style.display = "block";
     document.querySelector(".features").style.display = "none";
     document.querySelector(".hero__lead").style.display = "none";
     document.querySelector(".cta-final").style.display = "none";
@@ -282,7 +283,17 @@ document.getElementById("btn-create").addEventListener("click", async () => {
 
 // LOGIN EMAIL ----------------------------------------------------------
 function loggedUi(displayName){
-  
+  document.querySelector("#openModal").style.display = "none";
+      document.querySelector(".hero__footer-note").style.display = "none";
+      document.querySelector(".how").style.display = "none";
+      document.querySelector(".features").style.display = "none";
+      document.querySelector(".testimonials").style.display = "none";
+      document.querySelector(".hero__lead").style.display = "none";
+      document.querySelector(".cta-final").style.display = "none";
+      document.querySelector("#iconUser").innerText = "block";
+      document.querySelector(".building").style.display = "block";
+      document.querySelector("#sairBtn").style.display = "block";
+      document.querySelector("#iconUser").style.display = "block";
 }
 
 
@@ -309,7 +320,7 @@ document.getElementById("btn-login").addEventListener("click", async () => {
 document.getElementById("google-login").addEventListener("click", async () => {
   try {
     await persistence(auth, browserLocalPersistence);
-    const result = await signInWithPopup(auth, provider);
+    const result = await signInWithPopup(auth, email, password, provider);
     // alert("Login Google: " + result.user.email);
     const nameUser = document.getElementById("nameUser").innerText = result.user.email;
     showToast("Login realizado com sucesso!");
