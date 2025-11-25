@@ -232,15 +232,15 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("Usuário restaurado:", user);
     document.querySelector("#nameUser").innerText = user.email;
+    document.querySelector("#sairBtn").style.display = "block";
     document.querySelector("#openModal").style.display = "none";
     document.querySelector(".hero__footer-note").style.display = "none";
     document.querySelector(".how").style.display = "none";
     document.querySelector(".features").style.display = "none";
     document.querySelector(".hero__lead").style.display = "none";
     document.querySelector(".cta-final").style.display = "none";
-    document.querySelector("#iconUser").style.display = "block";
+    document.querySelector("#iconUser").style.display = "block" ;
     document.querySelector("#preview").style.display = "block";
-    document.querySelector("#sairBtn").style.display = "block";
     // usuário está logado
   } else {
     console.log("Nenhum usuário logado.");
