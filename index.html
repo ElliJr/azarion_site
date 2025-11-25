@@ -15,14 +15,7 @@
     <!-- HERO -->
     <div class="hero">
       <div class="campoUser">
-        <img src="assets/img/person_acount.png" alt="conta perfil"
-          id="iconUser">
-        <h5 id="nameUser"></h5>
-        <div onclick="sairBtn" id="sairBtn">Log out</div>
-      </div>
-      <div class="menu_campoUser">
-        <img src="assets/img/person_acount.png" alt="conta perfil"
-          id="iconUser">
+
         <h5 id="nameUser"></h5>
         <div onclick="sairBtn" id="sairBtn">Log out</div>
       </div>
@@ -91,11 +84,30 @@
         </div>
       </div>
 
+      <!-- MENU LATERAL MOBILE -->
+      <!-- <div id="menu-mobile" class="menu-mobile">
+        <div class="menu-header">
+          <img src="assets/img/person_acount.png" alt="conta perfil"
+          id="iconUser">
+          <p id="nameUser"></p>
+          <div id="closeMenu">✖</div>
+        </div>
+
+        <ul>
+          <li><a href="#how">Como funciona</a></li>
+          <li><a  onclick="openModal()" id="openModal">Começar</a></li>
+          <div onclick="sairBtn" id="sairBtn">Log out</div>
+        </ul>
+      </div> -->
+
+      <!-- BOTÃO MENU -->
+      <!-- <div id="menu-button" class="menu-btn">☰</div> -->
+
       <div class="hero__footer-note">Menos de 2 minutos para começar.</div>
     </div>
     <!-- COMO FUNCIONA -->
     <section class="how">
-      <h2 class="section-title">Como funciona?</h2>
+      <h2 id="how" class="section-title">Como funciona?</h2>
       <div class="how-grid">
         <div class="how-item">
           <div class="how-number">1</div>
@@ -184,7 +196,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
-
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 // CONFIG ---------------------------------------------------------------
 
 const firebaseConfig = {
@@ -206,12 +218,15 @@ function showToast(message) {
         toast.classList.remove("show");
     }, 3000); // some em 3 segundos
 }
-// INIT FIREBASE --------------------------------------------------------
+// INIT GLOBAL  --------------------------------------------------------
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const analytics = getAnalytics(app); // ATIVADO AQUI ✔
 const persistence = setPersistence; 
+const storage = getStorage(app);
+
+
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -222,6 +237,7 @@ onAuthStateChanged(auth, (user) => {
     document.querySelector(".hero__footer-note").style.display = "none";
     document.querySelector(".how").style.display = "none";
     document.querySelector("#iconUser").style.display = "block";
+    document.querySelector("#preview").style.display = "block";
     document.querySelector(".features").style.display = "none";
     document.querySelector(".hero__lead").style.display = "none";
     document.querySelector(".cta-final").style.display = "none";
@@ -291,6 +307,7 @@ function loggedUi(displayName){
       document.querySelector(".hero__lead").style.display = "none";
       document.querySelector(".cta-final").style.display = "none";
       document.querySelector("#iconUser").innerText = "block";
+      document.querySelector("#preview").innerText = "block";
       document.querySelector(".building").style.display = "block";
       document.querySelector("#sairBtn").style.display = "block";
       document.querySelector("#iconUser").style.display = "block";
@@ -320,7 +337,7 @@ document.getElementById("btn-login").addEventListener("click", async () => {
 document.getElementById("google-login").addEventListener("click", async () => {
   try {
     await persistence(auth, browserLocalPersistence);
-    const result = await signInWithPopup(auth, email, password, provider);
+    const result = await signInWithPopup(auth, provider);
     // alert("Login Google: " + result.user.email);
     const nameUser = document.getElementById("nameUser").innerText = result.user.email;
     showToast("Login realizado com sucesso!");
@@ -342,6 +359,68 @@ document.getElementById("sairBtn").addEventListener("click", async () => {
     console.error("Erro ao fazer logout:", error);
   }
 });
+
+//menu lateral
+// --- MENU LATERAL RESPONSIVO ----------------------------------
+
+// const menu = document.getElementById("menu-mobile");
+// const btnMenu = document.getElementById("menu-button");
+// const btnClose = document.getElementById("closeMenu");
+// const logoutMenu = document.getElementById("menu-logout");
+
+// btnMenu.addEventListener("click", () => {
+//   menu.style.right = "0";
+// });
+
+// btnClose.addEventListener("click", () => {
+//   menu.style.right = "-250px";
+// });
+
+// logout dentro do menu
+logoutMenu.addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+    location.reload();
+  } catch (error) {
+    alert("Erro ao sair: " + error.message);
+  }
+});
+
+//foto de perfil
+const input = document.getElementById('iconUser');
+const preview = document.getElementById('preview');
+
+input.addEventListener('change', async (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  // Preview
+  preview.src = URL.createObjectURL(file);
+
+  // Referência no storage (melhor: usar o uid do usuário)
+  const storage = getStorage();
+  const storageRef = ref(storage, `users/${auth.currentUser.uid}/icon.jpg`);
+
+  try {
+    // Upload para Firebase
+    await uploadBytes(storageRef, file);
+
+    // URL pública para o perfil
+    const url = await getDownloadURL(storageRef);
+
+    // Atualiza o perfil do usuário logado
+    await updateProfile(auth.currentUser, {
+      photoURL: url
+    });
+
+    console.log("Icon atualizado:", url);
+
+  } catch (error) {
+    console.error("Erro no upload:", error);
+  }
+});
+
+
     </script>
   </body>
 </html>
