@@ -2,9 +2,9 @@
         :root {
             --bg-color: #09090b;
             --card-bg: #18181b;
-            --primary-color: #10b981;
+            --primary-color: #ff0044;
             /* Verde Esmeralda */
-            --primary-hover: #059669;
+            --primary-hover: #bd0636;
             --text-main: #ffffff;
             --text-muted: #a1a1aa;
             --border-color: rgba(255, 255, 255, 0.05);
@@ -129,7 +129,7 @@
             margin-bottom: 15px;
             text-transform: uppercase;
             background: linear-gradient(to right, #fff, #a1a1aa);
-            -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -1px;
         }
@@ -166,8 +166,8 @@
 
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: rgba(16, 185, 129, 0.3);
+            box-shadow: 0 20px 40px rgba(104, 0, 0, 0.26);
+            border-color: #bd0636;
         }
 
         /* Stagger Animation */
