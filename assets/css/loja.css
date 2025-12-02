@@ -110,6 +110,7 @@
         /* ------------------------- 2. SHOP SECTION (EXISTING) ------------------------- */
 
         .main-content {
+            display: none;
             flex-grow: 1;
         }
 
