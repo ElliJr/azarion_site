@@ -97,6 +97,7 @@
     }
 
     .close {
+      background: #ac002ec7;
       text-align: center;
       margin-top: 15px;
       cursor: pointer;
@@ -105,7 +106,7 @@
       border-radius: 10px;
     }
     .close:hover {
-            transform: scale(1.08);
+      transform: scale(1.08);
       background: #ac002ec7;
       box-shadow: 0 0 28px #ff0044a0;
     }

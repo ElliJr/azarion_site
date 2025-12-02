@@ -1,80 +1,705 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
+<html lang="pt-br">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste HTML</title>
+    <title>Streetwear Oversized Store | Premium Collection</title>
+    
+    <!-- Importando Google Fonts (Poppins) e Ícones (Font Awesome) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* Variáveis de Cores (Centralizando o Tema Escuro) */
+        :root {
+            --bg-color: #09090b;
+            --card-bg: #18181b;
+            --primary-color: #10b981; /* Verde Esmeralda */
+            --primary-hover: #059669;
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --border-color: rgba(255,255,255,0.05);
+        }
+
+        /* Reset Básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
-            height: 100vh;
+            flex-direction: column;
+        }
+
+        a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        /* ------------------------- 1. HEADER & NAVIGATION ------------------------- */
+
+        .header {
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .icon-cart {
+            font-size: 1.2rem;
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 61px;
+                left: 0;
+                width: 100%;
+                background-color: var(--card-bg);
+                border-top: 1px solid var(--border-color);
+                padding: 20px 30px;
+                gap: 15px;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* ------------------------- 2. SHOP SECTION (EXISTING) ------------------------- */
+
+        .main-content {
+            flex-grow: 1;
+        }
+        
+        .shop-section {
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #fff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .product-grid {
+            display: grid;
+            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Card styles - kept for reference, please see the animation updates below */
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 15px;
+            position: relative;
+            transition: all 0.4s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            
+            /* Animation Setup */
+            opacity: 0; 
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+        
+        /* Stagger Animation */
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.3s; }
+        .product-card:nth-child(3) { animation-delay: 0.5s; }
+
+        .image-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1/1; 
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .product-card:hover .image-container img {
+            transform: scale(1.1);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .badge.new { background: var(--primary-color); color: #000; }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #fff;
+            display: flex;
             align-items: center;
             justify-content: center;
-            background: #111;
-            color: white;
-        }
-
-        .box {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 0px 20px #000;
-            text-align: center;
-        }
-
-        button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            background: #4caf50;
-            color: white;
             cursor: pointer;
+            transition: 0.3s;
+            z-index: 2;
         }
 
-        button:hover {
-            background: #45a049;
+        .wishlist-btn:hover {
+            background: #fff;
+            color: #ff4757;
         }
+
+        .product-info {
+            padding: 0 5px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .rating {
+            color: #fbbf24;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .product-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto; 
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .old-price {
+            font-size: 0.9rem;
+            text-decoration: line-through;
+            color: var(--text-muted);
+            margin-right: 10px;
+        }
+
+        .btn-buy {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: var(--primary-color);
+            color: #000;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-buy:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+            color: #fff;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: #000;
+        }
+
+        /* ------------------------- 3. TOAST NOTIFICATION ------------------------- */
 
         .toast {
             position: fixed;
-            right: -300px;
-            top: 20px;
-            background: #0f0;
-            color: #000;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(50px); /* Start low and centered */
+            background-color: var(--card-bg);
+            border: 1px solid var(--primary-color);
             padding: 15px 25px;
-            border-radius: 10px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: right 0.5s ease;
-            z-index: 9999;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            color: var(--text-main);
+            font-weight: 600;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
         }
 
-        .toast.show {
-            right: 20px;
+        .toast.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0); /* Move up to final position */
+        }
+        
+        .toast i {
+            color: var(--primary-color);
+            font-size: 1.2em;
+        }
+
+        /* ------------------------- 4. FOOTER ------------------------- */
+
+        .footer {
+            background-color: #000000;
+            border-top: 1px solid var(--border-color);
+            padding: 60px 20px 30px;
+            color: var(--text-muted);
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            gap: 40px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            height: 3px;
+            width: 40px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 400;
+            display: block;
+        }
+
+        .social-links a {
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background-color: var(--card-bg);
+            margin: 0 10px 10px 0;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            color: var(--text-muted);
+            transition: all 0.5s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--bg-color);
+            background-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        /* Animation Keyframes */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive Adjustments for Footer */
+        @media (max-width: 768px) {
+            .footer-content {
+                justify-content: flex-start;
+            }
+            .footer-col {
+                min-width: 150px;
+                margin-bottom: 20px;
+            }
         }
     </style>
-  </head>
-  <body>
-    <div id="toast" class="toast">Login realizado com sucesso!</div>
+</head>
+<body>
 
-    <div class="box">
-      <h2>Arquivo HTML de Teste</h2>
-      <p>Se você está vendo isso, o arquivo funciona!</p>
-      <button onclick="showToast('Login realizado com sucesso!')">Clique aqui</button>
+    <!-- 1. HEADER / NAVIGATION BAR -->
+    <header class="header">
+        <div class="logo">Oversize<span>.io</span></div>
+        <nav class="nav-menu" id="navMenu">
+            <a href="#shop" class="nav-link">Produtos</a>
+            <a href="#" class="nav-link">Personalizar</a>
+            <a href="#" class="nav-link">Contato</a>
+            <a href="#" class="nav-link icon-cart" aria-label="Carrinho"><i class="fa-solid fa-bag-shopping"></i></a>
+        </nav>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+    
+    <div class="main-content">
+        <!-- 2. SHOP SECTION -->
+        <section class="shop-section" id="shop">
+            
+            <div class="section-header">
+                <h2 class="section-title">Oversizes em Destaque</h2>
+                <p class="section-subtitle">
+                    Modelos exclusivos com o corte perfeito para o seu estilo. 
+                    Streetwear autêntico com qualidade premium.
+                </p>
+            </div>
+
+            <div class="product-grid">
+
+                <!-- CARD 1 -->
+                <div class="product-card">
+                    <span class="badge new">Novo</span>
+                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop" alt="Oversize preto">
+                    </div>
+
+                    <div class="product-info">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span style="color:var(--text-muted); margin-left:5px;">(45)</span>
+                        </div>
+                        <h3>Oversize Black Strong</h3>
+                        <div class="price-row">
+                            <div>
+                                <span class="old-price">R$ 159,90</span>
+                                <span class="price">R$ 129,90</span>
+                            </div>
+                        </div>
+                        <button class="btn-buy" data-product-name="Oversize Black Strong">
+                            <i class="fa-solid fa-cart-shopping"></i> Comprar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="product-card">
+                    <span class="badge">Destaque</span>
+                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop" alt="Oversize personalizada">
+                    </div>
+
+                    <div class="product-info">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span style="color:var(--text-muted); margin-left:5px;">(120)</span>
+                        </div>
+                        <h3>Oversize Personalizada</h3>
+                        <div class="price-row">
+                            <span class="price">R$ 159,90</span>
+                        </div>
+                        <button class="btn-buy btn-outline" data-product-name="Oversize Personalizada (Criação)">
+                            <i class="fa-solid fa-pen-nib"></i> Criar Estampa
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="product-card">
+                    <span class="badge" style="background: #ff4757;">Limitado</span>
+                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=800&auto=format&fit=crop" alt="Oversize fire">
+                    </div>
+
+                    <div class="product-info">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <span style="color:var(--text-muted); margin-left:5px;">(28)</span>
+                        </div>
+                        <h3>Oversize Fire Limited</h3>
+                        <div class="price-row">
+                            <span class="price">R$ 139,90</span>
+                        </div>
+                        <button class="btn-buy" data-product-name="Oversize Fire Limited">
+                            <i class="fa-solid fa-cart-shopping"></i> Comprar
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- 4. FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            
+            <div class="footer-col">
+                <h4>Oversize.io</h4>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Política de Troca</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Atendimento</h4>
+                <ul>
+                    <li><a href="#">Meus Pedidos</a></li>
+                    <li><a href="#">Rastrear Envio</a></li>
+                    <li><a href="#">Fale Conosco</a></li>
+                    <li><a href="#">Ajuda</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Siga-nos</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>NewsLetter</h4>
+                <p>Receba ofertas exclusivas e novidades em primeira mão.</p>
+                <!-- Input field mock -->
+                <div style="margin-top: 15px; display:flex;">
+                    <input type="email" placeholder="Seu e-mail..." style="padding: 10px; border: none; border-radius: 8px 0 0 8px; background: var(--card-bg); color: var(--text-main); flex-grow: 1;">
+                    <button style="padding: 10px 15px; border: none; border-radius: 0 8px 8px 0; background: var(--primary-color); color: #000; font-weight: 700; cursor: pointer;"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Oversize.io | Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <!-- 3. TOAST NOTIFICATION (Hidden by default) -->
+    <div id="toast-notification" class="toast">
+        <span id="toast-content"></span>
     </div>
 
     <script>
-        function showToast(message) {
-            const toast = document.getElementById("toast");
-            toast.textContent = message;
-            toast.classList.add("show");
+        // JavaScript para Notificação e Menu Mobile
+
+        // ------------------ Menu Mobile Toggle ------------------
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // ------------------ Add to Cart Notification Logic ------------------
+
+        /**
+         * Exibe uma notificação de sucesso com a mensagem fornecida.
+         * @param {string} message - A mensagem a ser exibida.
+         */
+        function showNotification(message) {
+            const toast = document.getElementById('toast-notification');
+            const content = document.getElementById('toast-content');
+
+            // 1. Atualiza o conteúdo (com ícone de sucesso)
+            content.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${message}`;
+            
+            // 2. Remove a classe 'visible' para garantir que a transição ocorra
+            toast.classList.remove('visible');
+
+            // 3. Força um reflow (necessário para re-trigger a animação/transição)
+            void toast.offsetWidth; 
+
+            // 4. Mostra o toast
+            toast.classList.add('visible');
+
+            // 5. Define um tempo para esconder o toast (3 segundos)
             setTimeout(() => {
-                toast.classList.remove("show");
-            }, 3000);
+                toast.classList.remove('visible');
+            }, 3000); 
         }
+
+        // ------------------ Event Listeners para Botões de Compra ------------------
+        document.querySelectorAll('.btn-buy').forEach(button => {
+            button.addEventListener('click', (event) => {
+                // Previne a ação padrão (se fosse um formulário)
+                event.preventDefault(); 
+                
+                // Obtém o nome do produto do atributo data-product-name
+                const productName = button.getAttribute('data-product-name');
+
+                if (button.classList.contains('btn-outline')) {
+                    // Mensagem para o botão "Criar Estampa"
+                    showNotification(`Iniciando personalização de "${productName.replace(' (Criação)', '')}"!`);
+                } else {
+                    // Mensagem para o botão "Comprar"
+                    showNotification(`"${productName}" adicionado ao carrinho!`);
+                }
+            });
+        });
+        
     </script>
-  </body>
+</body>
 </html>
