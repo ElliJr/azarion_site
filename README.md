@@ -1,109 +1,106 @@
-⚡ Azairon 
+--🏋️‍♂️ Azarion — Loja Oficial de Moda Fitness Oversize--
+<p align="center"> <img src="assets/mockups/hero-mockup.png" alt="Hero Mockup" width="800"/> </p>
 
-Este é um projeto de demonstração e conceito para uma loja virtual de moda, especializada em camisetas Oversize. O foco está na autenticidade, design moderno e uma experiência de usuário fluida, com autenticação integrada via Firebase.
+A Azarion é uma marca focada em roupas fitness oversize, trazendo estilo, conforto e identidade.
+Este é o repositório oficial do site hospedado em:
+👉 https://azarion.vercel.app
 
-👕 A Proposta de Valor da Azairon (Foco na Loja)
+✨ Visão Geral
+<p align="center"> <img src="assets/mockups/showcase.png" alt="Showcase Mockup" width="800"/> </p>
 
-A Azairon nasceu da cultura urbana e da paixão por peças que combinam conforto extremo com atitude. Não vendemos apenas roupas; oferecemos uma identidade visual forte e despojada.
+A plataforma foi construída com foco em:
 
-Produto Central: Camisetas Oversize (modelagem ampla), que garantem caimento relaxado e estilo contemporâneo.
+🎨 Design premium e agressivo estilo black + neon
 
-Estilo & Conceito: Foco em estampas minimalistas e gráficas que representam a cultura Streetwear e o lifestyle urbano.
+⚡ Performance alta e carregamento rápido
 
-Público-Alvo: Entusiastas de moda urbana, jovens adultos que valorizam o conforto sem abrir mão da autenticidade.
+🛒 Estrutura preparada para e-commerce
 
-Experiência de Compra: O site foi desenhado com um Dark-Mode elegante, usando o amarelo (#f7d541) como cor de destaque, remetendo a uma estética noturna e moderna. A navegação é intuitiva para que o usuário encontre rapidamente o que procura.
+📱 Totalmente responsivo
 
-✨ Funcionalidades Principais
+🔥 Visual forte voltado ao público de academia
 
-Loja Virtual (Shop):
+🛍️ Sessão de Produtos
+<p align="center"> <img src="assets/mockups/products-section.png" alt="Products Section Mockup" width="800"/> </p>
 
-Exibição de produtos em destaque em um layout de grid responsivo.
+A listagem de produtos conta com:
 
-Detalhes do produto (nome, preço, avaliações, tamanhos disponíveis).
+Cards estilizados
 
-Funcionalidades de e-commerce (Botões Comprar, Lista de Desejos - Wishlist).
+Efeitos suaves
 
-Mecanismo de Busca Inteligente: Inclui um Input de pesquisa/filtro para localizar rapidamente peças por nome, cor ou tema da estampa.
+Layout limpo
 
-Autenticação Completa (Firebase Auth):
+Espaço para integração com banco de dados
 
-Cadastro e Login com Email e Senha.
+🎯 Funcionalidades Principais
 
-Login social com Google.
+🧢 Exibição elegante de produtos
 
-Manutenção de sessão e Logout.
+🖥️ Layout moderno e dinâmico
 
-Design Moderno e Responsivo:
+📦 Estrutura de e-commerce escalável
 
-Estilo Dark-Mode com cores de destaque (var(--primary-color): #f7d541).
+💳 Preparado para Mercado Pago
 
-Design totalmente adaptável a dispositivos móveis e desktop, priorizando a visualização do produto.
+🌐 Hospedagem no Vercel
 
-Animações de rolagem (ScrollReveal) para maior dinamismo visual.
-
-Notificações: Sistema de Toast para feedback de ações (sucesso no login, logout, etc.).
-
-Landing Page: Seções de conteúdo para usuários deslogados ("Como funciona?", "Por que escolher a Azairon?"), funcionando como um catálogo para instigar o cadastro.
+🔐 Compatível com sistemas de login já existentes
 
 🛠️ Tecnologias Utilizadas
 
-Tecnologia
+HTML5
 
-Função
+CSS3 / TailwindCSS
 
-HTML5 / CSS3
+JavaScript
 
-Estrutura e Estilização Base (CSS customizado).
+Vercel (deploy)
 
-JavaScript (ES6+)
+📂 Estrutura do Projeto
+/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+├── assets/
+│   ├── images/
+│   └── mockups/
+│       ├── hero-mockup.png
+│       ├── showcase.png
+│       ├── products-section.png
+│       └── mobile-preview.png
+└── README.md
 
-Lógica da aplicação, manipulação do DOM e integração com a API.
+📱 Prévia Mobile
+<p align="center"> <img src="assets/mockups/mobile-preview.png" alt="Mobile Mockup" width="350"/> </p>
+🚀 Rodando Localmente
+git clone https://github.com/seu-usuario/azarion.git
+cd azarion
 
-Firebase Authentication
 
-Gerenciamento de usuários, login e segurança.
+Abra o arquivo index.html no navegador.
 
-Tailwind CSS (CDN)
+📈 Próximas Atualizações
 
-Classes de utilidade para layouts rápidos.
+Carrinho de compras
 
-ScrollReveal
+Sistema de checkout
 
-Biblioteca para animações de rolagem.
+Painel Admin
 
-Font Awesome / Material Symbols
+App oficial em React Native
 
-Ícones para UI.
+Área de usuário
 
-📐 Estrutura do Projeto (index.html)
+Cadastro e login integrado
 
-O projeto é estruturado em um único arquivo index.html para simplificar a implantação, seguindo as melhores práticas de layout moderno:
+👤 Desenvolvedor
 
-<header> (Hero Section): Contém a área de boas-vindas, o título principal (H1), a interface de usuário (perfil e botão de Sair/Login) e o modal de autenticação.
+Elli Junior — Web & Mobile Developer
+Portfólio: https://ellijr.github.io/portifolio/
 
-<div id="loja-main-content">: Contém a seção de produtos (.shop-section), visível somente após o usuário estar logado. Inclui o Input de Filtro posicionado acima do .product-grid.
+📜 Licença
 
-section.how e section.features: Conteúdo da landing page para usuários deslogados.
-
-section.cta-final: Chamada final para Ação, incentivando o cadastro.
-
-<footer>: Rodapé com links sociais (Instagram, WhatsApp) e informações de copyright.
-
-🚀 Como Executar Localmente
-
-Para que a Autenticação Firebase funcione corretamente, você precisará de uma configuração válida no seu ambiente:
-
-Clone ou Salve: Salve o conteúdo do index.html em sua máquina.
-
-Configuração Firebase (Necessário!):
-
-Crie um novo projeto no Console do Firebase.
-
-Ative o Firebase Authentication para Email/Senha e Google Sign-In.
-
-Obtenha as chaves de configuração do seu app web.
-
-Variáveis de Ambiente: No ambiente de execução deste código (como o Canvas), as configurações do Firebase e o token de autenticação são injetados automaticamente pelas variáveis globais __firebase_config e __initial_auth_token.
-
-Servidor Local: Para rodar o index.html e garantir que o Firebase funcione, abra o arquivo em um navegador usando um servidor web local (como o Live Server do VS Code).
+Projeto licenciado sob MIT License.
