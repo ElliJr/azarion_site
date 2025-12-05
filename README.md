@@ -1,4 +1,4 @@
-#🏋 Azarion
+# Azarion
 
 A Azarion é uma marca focada em roupas fitness oversize, trazendo estilo, conforto e identidade.
 Este é o repositório oficial do site hospedado em:
