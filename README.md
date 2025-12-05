@@ -1,11 +1,11 @@
-<p align="center"> <img src="assets/img/icone.ico" alt="azarion" width="800"/> </p>
+<p align="center"> <img src="assets/img/icone.ico" alt="azarion" width="300"/> </p>
 #🏋️‍♂️ Azarion — Loja Oficial de Moda Fitness Oversize
 
 A Azarion é uma marca focada em roupas fitness oversize, trazendo estilo, conforto e identidade.
 Este é o repositório oficial do site hospedado em:
 👉 https://azarion.vercel.app
 
-##✨ Visão Geral
+## ✨ Visão Geral
 
 A plataforma foi construída com foco em:
  -🎨 Design premium e agressivo estilo black + neon
@@ -15,7 +15,7 @@ A plataforma foi construída com foco em:
  -🔥 Visual forte voltado ao público de academia
  -🛍️ Sessão de Produtos
 
-#🛠️ Tecnologias Utilizadas
+# 🛠️ Tecnologias Utilizadas
 
 ```bash
 HTML5 / CSS3
@@ -29,7 +29,7 @@ Biblioteca para animações de rolagem.
 Font Awesome / Material Symbols
 Ícones para UI.
 ```
-##📈 Próximas Atualizações
+## 📈 Próximas Atualizações
 
 --Carrinho de compras
 --Sistema de checkout
@@ -38,7 +38,7 @@ Font Awesome / Material Symbols
 --Área de usuário
 --Cadastro e login integrado
 
-##👤 Desenvolvedor
+## 👤 Desenvolvedor
 
 Elli Junior — Web & Mobile Developer
 Portfólio: https://ell1.vercel.app
