@@ -84,7 +84,7 @@
     display: none;
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: -360px;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -92,6 +92,11 @@
     padding: 10px 15px;
     border-radius: 10px;
     border: 1px solid var(--border-color);
+    transition: 0.4s;
+  }
+
+  .campoUser:hover {
+    right: 17px;
   }
 
   #nameUser {
@@ -648,6 +653,22 @@
     fill: var(--text-muted);
     transition: all 0.3s ease;
   }
+
+  .search-oversizes {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .search-oversizes input {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    border: 1px solid var(--primary-dark);
+    background-color: rgb(46, 46, 46);
+    color:rgb(221, 221, 221);
+  }
+
 
   .socialContainer:hover {
     transform: scale(1.1);

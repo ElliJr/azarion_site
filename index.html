@@ -25,6 +25,9 @@
     <div class="hero">
       <div class="campoUser">
         <!-- Icone de perfil (Input de Arquivo/Imagem) -->
+         <span class="material-symbols-outlined">
+              <img src="assets/img/arrowGoogleIcon.png" alt="">
+        </span>
         <label for="iconFileInput" style="cursor: pointer; display: none;"
           id="iconUserLabel">
           <img id="preview"
@@ -49,27 +52,6 @@
           Crie sua conta, é grátis.
         </p>
 
-        <!-- Conteúdo Pós-Login -->
-        <div class="building" id="logged-content" style="display: none;">
-          <h1>Em construção, aguarde...</h1>
-          <!-- From Uiverse.io by mobinkakei -->
-          <div id="wifi-loader">
-            <svg class="circle-outer" viewBox="0 0 86 86">
-              <circle class="back" cx="43" cy="43" r="40"></circle>
-              <circle class="front" cx="43" cy="43" r="40"></circle>
-              <circle class="new" cx="43" cy="43" r="40"></circle>
-            </svg>
-            <svg class="circle-middle" viewBox="0 0 60 60">
-              <circle class="back" cx="30" cy="30" r="27"></circle>
-              <circle class="front" cx="30" cy="30" r="27"></circle>
-            </svg>
-            <svg class="circle-inner" viewBox="0 0 34 34">
-              <circle class="back" cx="17" cy="17" r="14"></circle>
-              <circle class="front" cx="17" cy="17" r="14"></circle>
-            </svg>
-            <div class="text" data-text="Building"></div>
-          </div>
-        </div>
 
         <button onclick="openModal()" id="openModal"
           class="btn btn--primary">Criar Conta</button>
@@ -126,6 +108,9 @@
                     Streetwear autêntico com qualidade premium.
                 </p>
             </div>
+            <div  class="search-oversizes">
+              <input type="text"   placeholder="perquise por camisa">
+            </div>
             <div class="product-grid">
                 <!-- CARD 1 -->
                 <div class="product-card">
@@ -133,7 +118,7 @@
                     <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
                     
                     <div class="image-container">
-                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop" alt="Oversize preto">
+                        <img src="assets/img/imgBlusas/gojoOver.jpeg" id="personagem" alt="Oversize preto">
                     </div>
 
                     <div class="product-info">
@@ -145,11 +130,11 @@
                             <i class="fa-solid fa-star-half-stroke"></i>
                             <span style="color:var(--text-muted); margin-left:5px;">(45)</span>
                         </div>
-                        <h3>Oversize Black Strong</h3>
+                        <h3>Oversize Gojo Satoro</h3>
                         <div class="price-row">
                             <div>
-                                <span class="old-price">R$ 159,90</span>
-                                <span class="price">R$ 129,90</span>
+                                <!-- <span class="old-price">R$ 119,90</span> -->
+                                <span class="price">R$ 99,90</span>
                             </div>
                         </div>
                         <button class="btn-buy" data-product-name="Oversize Black Strong">
@@ -160,11 +145,11 @@
 
                 <!-- CARD 2 -->
                 <div class="product-card">
-                    <span class="badge">Destaque</span>
+                    <span class="badge new">Novo</span>
                     <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
 
                     <div class="image-container">
-                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop" alt="Oversize personalizada">
+                        <img src="assets/img/imgBlusas/berserkerOver.jpeg" id="personagem" alt="Oversize personalizada">
                     </div>
 
                     <div class="product-info">
@@ -176,23 +161,23 @@
                             <i class="fa-solid fa-star"></i>
                             <span style="color:var(--text-muted); margin-left:5px;">(120)</span>
                         </div>
-                        <h3>Oversize Personalizada</h3>
+                        <h3>Oversize Berserk</h3>
                         <div class="price-row">
-                            <span class="price">R$ 159,90</span>
+                            <span class="price">R$ 99,90</span>
                         </div>
-                        <button class="btn-buy btn-outline" data-product-name="Oversize Personalizada (Criação)">
-                            <i class="fa-solid fa-pen-nib"></i> Criar Estampa
+                        <button class="btn-buy " data-product-name="Oversize Personalizada (Criação)">
+                            <i class="fa-solid fa-cart-shopping"></i> comprar
                         </button>
                     </div>
                 </div>
 
                 <!-- CARD 3 -->
                 <div class="product-card">
-                    <span class="badge" style="background: #ff4757;">Limitado</span>
+                    <span class="badge new">Novo</span>
                     <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
 
                     <div class="image-container">
-                        <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=800&auto=format&fit=crop" alt="Oversize fire">
+                        <img src="assets/img/imgBlusas/kanekiOver.jpeg" id="personagem" alt="Oversize fire">
                     </div>
 
                     <div class="product-info">
@@ -204,9 +189,87 @@
                             <i class="fa-regular fa-star"></i>
                             <span style="color:var(--text-muted); margin-left:5px;">(28)</span>
                         </div>
-                        <h3>Oversize Fire Limited</h3>
+                        <h3>Oversize Tokyo Ghoul</h3>
                         <div class="price-row">
-                            <span class="price">R$ 139,90</span>
+                            <span class="price">R$ 99,90</span>
+                        </div>
+                        <button class="btn-buy" data-product-name="Oversize Fire Limited">
+                            <i class="fa-solid fa-cart-shopping"></i> Comprar
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="badge new">Novo</span>
+                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+
+                    <div class="image-container">
+                        <img src="assets/img/imgBlusas/porscheOver.jpeg" id="carro" alt="Oversize fire">
+                    </div>
+
+                    <div class="product-info">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <span style="color:var(--text-muted); margin-left:5px;">(28)</span>
+                        </div>
+                        <h3>Oversize Porsche</h3>
+                        <div class="price-row">
+                            <span class="price">R$ 99,90</span>
+                        </div>
+                        <button class="btn-buy" data-product-name="Oversize Fire Limited">
+                            <i class="fa-solid fa-cart-shopping"></i> Comprar
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="badge new">Novo</span>
+                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+
+                    <div class="image-container">
+                        <img src="assets/img/imgBlusas/lancerOver.jpeg" id="carro" alt="Oversize fire">
+                    </div>
+
+                    <div class="product-info">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <span style="color:var(--text-muted); margin-left:5px;">(28)</span>
+                        </div>
+                        <h3>Oversize Lancher</h3>
+                        <div class="price-row">
+                            <span class="price">R$ 99,90</span>
+                        </div>
+                        <button class="btn-buy" data-product-name="Oversize Fire Limited">
+                            <i class="fa-solid fa-cart-shopping"></i> Comprar
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="badge new">Novo</span>
+                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+
+                    <div class="image-container">
+                        <img src="assets/img/imgBlusas/zenitsuOver.jpeg" id="personagem" alt="Oversize fire">
+                    </div>
+
+                    <div class="product-info">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <span style="color:var(--text-muted); margin-left:5px;">(28)</span>
+                        </div>
+                        <h3>Oversize Zenitsu</h3>
+                        <div class="price-row">
+                            <span class="price">R$ 99,90</span>
                         </div>
                         <button class="btn-buy" data-product-name="Oversize Fire Limited">
                             <i class="fa-solid fa-cart-shopping"></i> Comprar
@@ -371,6 +434,7 @@ onAuthStateChanged(auth, (user) => {
     console.log("Usuário restaurado:", user);
     document.querySelector("#nameUser").innerText = user.email;
     document.querySelector("#sairBtn").style.display = "block";
+    document.querySelector("#main-modal").style.display = "none";
     document.querySelector("#openModal").style.display = "none";
     document.querySelector(".hero__footer-note").style.display = "none";
     document.querySelector(".how").style.display = "none";

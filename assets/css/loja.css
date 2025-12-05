@@ -143,6 +143,7 @@
 
         .product-grid {
             display: grid;
+            /* flex-wrap: wrap; */
             gap: 40px;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             max-width: 1200px;
@@ -459,6 +460,16 @@
         }
 
         /* Mobile Responsive Adjustments for Footer */
+        @media (max-width: 1040px) {
+            .product-grid{
+                animation: 0.5ms ease-in-out;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 300px;
+
+            }
+        }
         @media (max-width: 768px) {
             .footer-content {
                 justify-content: flex-start;
