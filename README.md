@@ -43,4 +43,4 @@ Font Awesome / Material Symbols
 --Cadastro e login integrado
 
 
-<p align="center"> <img src="assets/img/banner/bannerCtv.jpeg" alt="azarion" width="800"/> </p>
+<p align="center"> <img src="assets/img/banner/bannerCtv.jpeg" alt="azarion" width="500"/> </p>
