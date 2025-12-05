@@ -31,10 +31,15 @@ Font Awesome / Material Symbols
 ## 📈 Próximas Atualizações
 
 --Carrinho de compras
+
 --Sistema de checkout
+
 --Painel Admin
+
 --App oficial em React Native
+
 --Área de usuário
+
 --Cadastro e login integrado
 
 
