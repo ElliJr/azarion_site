@@ -1,5 +1,5 @@
 <p align="center"> <img src="assets/img/icone.ico" alt="azarion" width="300"/> </p>
-#🏋️‍♂️ Azarion — Loja Oficial de Moda Fitness Oversize
+#🏋 Azarion
 
 A Azarion é uma marca focada em roupas fitness oversize, trazendo estilo, conforto e identidade.
 Este é o repositório oficial do site hospedado em:
