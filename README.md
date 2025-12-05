@@ -1,4 +1,3 @@
-<p align="center"> <img src="assets/img/icone.ico" alt="azarion" width="300"/> </p>
 #🏋 Azarion
 
 A Azarion é uma marca focada em roupas fitness oversize, trazendo estilo, conforto e identidade.
@@ -38,8 +37,5 @@ Font Awesome / Material Symbols
 --Área de usuário
 --Cadastro e login integrado
 
-## 👤 Desenvolvedor
 
-Elli Junior — Web & Mobile Developer
-Portfólio: https://ell1.vercel.app
-
+<p align="center"> <img src="assets/img/icone.ico" alt="azarion" width="300"/> </p>
